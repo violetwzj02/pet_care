@@ -3,7 +3,7 @@ import { spawn } from "node:child_process";
 import { openSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 
-const baseURL = "http://localhost:3000";
+const baseURL = "http://localhost:3021";
 const outputDir = "playwright-check";
 
 function startServer() {
@@ -14,7 +14,7 @@ function startServer() {
   env.Path = pathValue;
   const log = openSync(`${outputDir}/server.log`, "a");
 
-  return spawn("cmd.exe", ["/c", "npm.cmd", "run", "dev"], {
+  return spawn("cmd.exe", ["/c", "npm.cmd", "run", "dev", "--", "--hostname", "127.0.0.1", "--port", "3021"], {
     env,
     stdio: ["ignore", log, log],
     windowsHide: true,
@@ -64,7 +64,14 @@ async function verifyPage(contextOptions, screenshotName) {
   await expect(page.getByRole("heading", { name: "让毛孩子干净、松软、好心情。" })).toBeVisible();
   await expect(page.getByRole("img", { name: /可爱手绘地图/ })).toBeVisible();
 
-  await page.getByRole("link", { name: "预约洗护" }).click();
+  await page.locator("#testimonials").scrollIntoViewIfNeeded();
+  await expect(page.locator("#testimonials")).toBeInViewport();
+  await expect(page.getByRole("heading", { name: "常来的主人，最在意的是细节和稳定感。" })).toBeVisible();
+  await expect(page.getByText("修完脸型特别自然")).toBeVisible();
+  await page.getByRole("button", { name: "下一条评价" }).click();
+  await expect(page.getByText("第一次带猫洗护")).toBeVisible();
+
+  await page.locator("#booking").scrollIntoViewIfNeeded();
   await expect(page.locator("#booking")).toBeInViewport();
 
   await page.getByRole("button", { name: /深层护理，选择套餐/ }).click();

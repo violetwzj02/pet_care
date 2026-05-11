@@ -1,12 +1,19 @@
 import { expect, test } from "@playwright/test";
 
-test("home page renders and booking toast works", async ({ page }) => {
+test("home page renders, testimonials rotate, and booking toast works", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { name: "让毛孩子干净、松软、好心情。" })).toBeVisible();
   await expect(page.getByRole("img", { name: /可爱手绘地图/ })).toBeVisible();
 
-  await page.getByRole("link", { name: "预约洗护" }).click();
+  await page.locator("#testimonials").scrollIntoViewIfNeeded();
+  await expect(page.locator("#testimonials")).toBeInViewport();
+  await expect(page.getByRole("heading", { name: "常来的主人，最在意的是细节和稳定感。" })).toBeVisible();
+  await expect(page.getByText("修完脸型特别自然")).toBeVisible();
+  await page.getByRole("button", { name: "下一条评价" }).click();
+  await expect(page.getByText("第一次带猫洗护")).toBeVisible();
+
+  await page.locator("#booking").scrollIntoViewIfNeeded();
   await expect(page.locator("#booking")).toBeInViewport();
 
   await page.getByRole("button", { name: /深层护理，选择套餐/ }).click();

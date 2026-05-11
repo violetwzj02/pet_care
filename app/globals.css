@@ -31,6 +31,22 @@ a {
   text-decoration: none;
 }
 
+@keyframes testimonial-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.testimonial-card {
+  animation: testimonial-enter 520ms ease both;
+}
+
 @layer components {
   .container-shell {
     @apply mx-auto w-[min(1180px,calc(100%_-_32px))];
