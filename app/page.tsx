@@ -249,18 +249,18 @@ export default function Home() {
 
         <section className="section-band" id="shop">
           <div className="container-shell">
-            <div className="grid overflow-hidden rounded-lg border border-[var(--line)] bg-white shadow-soft lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="bg-mint p-4 md:p-6">
+            <div className="flex flex-col overflow-hidden rounded-lg border border-[var(--line)] bg-white shadow-soft">
+              <div className="order-2 bg-mint p-4 md:p-6">
                 <Image
-                  className="h-full min-h-[320px] w-full rounded-lg object-cover"
+                  className="h-auto w-full rounded-lg object-contain"
                   src="/assets/shop/cute-location-map.png"
                   alt="绒光宠物洗护位于陕西北路1620号的可爱手绘地图"
                   width={1200}
                   height={900}
-                  sizes="(max-width: 1024px) 100vw, 520px"
+                  sizes="(max-width: 1180px) calc(100vw - 64px), 1132px"
                 />
               </div>
-              <div className="p-7 md:p-10">
+              <div className="order-1 p-7 md:p-10">
                 <p className="eyebrow">门店信息</p>
                 <h2 className="mb-4 text-[clamp(30px,4vw,48px)] font-extrabold leading-tight">
                   安静、明亮、没有刺鼻味道的洗护空间。
