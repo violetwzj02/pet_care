@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { BookingForm } from "@/components/BookingForm";
 import { PlanCards } from "@/components/PlanCards";
+import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 
 const navItems = [
   ["服务", "#services"],
   ["套餐", "#plans"],
   ["流程", "#process"],
+  ["评价", "#testimonials"],
   ["门店", "#shop"],
 ];
 
@@ -17,7 +19,7 @@ const stats = [
 
 const services = [
   {
-    icon: "浴",
+    icon: "洗",
     title: "温和洗护",
     body: "低刺激香波、双段冲洗、吸水巾预干，减少吹风时间和紧张感。",
   },
@@ -86,7 +88,7 @@ export default function Home() {
         >
           <a className="flex items-center gap-3 whitespace-nowrap font-extrabold" href="#top" aria-label="绒光宠物洗护店首页">
             <span className="grid size-[42px] place-items-center rounded-[13px] bg-gradient-to-br from-sage to-coral text-[23px] text-white shadow-[0_12px_24px_rgba(122,169,150,0.28)]">
-              爪
+              宠
             </span>
             <span>绒光宠物洗护店</span>
           </a>
@@ -247,7 +249,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section-band" id="shop">
+        <section className="section-band" id="testimonials">
+          <div className="container-shell">
+            <div className="section-head">
+              <p className="eyebrow">客户评价</p>
+              <h2>常来的主人，最在意的是细节和稳定感。</h2>
+              <p>这里收集了不同宠物类型、不同护理需求的真实反馈方向，方便新主人了解服务体验。</p>
+            </div>
+
+            <TestimonialsCarousel />
+          </div>
+        </section>
+
+        <section className="section-band section-band-alt" id="shop">
           <div className="container-shell">
             <div className="flex flex-col overflow-hidden rounded-lg border border-[var(--line)] bg-white shadow-soft">
               <div className="order-2 bg-mint p-4 md:p-6">
@@ -284,7 +298,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section-band section-band-alt" id="booking">
+        <section className="section-band" id="booking">
           <div className="container-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="eyebrow">在线预约</p>

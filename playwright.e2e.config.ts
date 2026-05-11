@@ -7,15 +7,9 @@ export default defineConfig({
     timeout: 5_000,
   },
   use: {
-    baseURL: "http://localhost:3020",
+    baseURL: "http://127.0.0.1:3020",
     trace: "on-first-retry",
     screenshot: "only-on-failure",
-  },
-  webServer: {
-    command: "npm.cmd run dev -- --hostname 127.0.0.1 --port 3020",
-    url: "http://localhost:3020",
-    reuseExistingServer: false,
-    timeout: 60_000,
   },
   projects: [
     {

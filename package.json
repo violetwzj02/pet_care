@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
-    "test:e2e": "playwright test",
+    "test:e2e": "node scripts/run-e2e.mjs",
     "verify:browser": "node scripts/verify-playwright.mjs"
   },
   "dependencies": {

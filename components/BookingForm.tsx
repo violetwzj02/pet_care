@@ -10,7 +10,7 @@ export function BookingForm() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const owner = formData.get("owner") || "主人";
-    const date = formData.get("date") || "预约日";
+    const date = formData.get("date") || "预约日期";
     const time = formData.get("time") || "预约时段";
 
     setToast(`${owner}，已收到 ${date} ${time} 的预约信息。`);
