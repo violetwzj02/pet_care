@@ -1,9 +1,14 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 
 export function BookingForm() {
   const [toast, setToast] = useState("");
+  const tomorrowDate = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    return date.toISOString().split("T")[0];
+  }, []);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -76,12 +81,19 @@ export function BookingForm() {
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <label className="font-bold text-ink">
             预约日期
-            <input className="form-control" type="date" name="date" required />
+            <input
+              className="form-control"
+              type="date"
+              name="date"
+              defaultValue={tomorrowDate}
+              required
+            />
           </label>
           <label className="font-bold text-ink">
             预约时段
-            <select className="form-control" name="time" required>
+            <select className="form-control" name="time" defaultValue="09:30 - 10:30" required>
               <option value="">请选择</option>
+              <option>09:30 - 10:30</option>
               <option>10:00 - 12:00</option>
               <option>12:00 - 15:00</option>
               <option>15:00 - 18:00</option>
